@@ -1,5 +1,9 @@
 "use strict";
 
+const ComponentList = require( './component-list' ),
+		$ = require( 'jquery' )
+	;
+
 class Form
 {
 	constructor( id ) {
@@ -12,7 +16,6 @@ class Form
 	}
 
 	build() {
-
 		let $container = $( '<form>' );
 		let $saveButton = $( '<button>' )
 			.attr( 'type', 'submit' )
@@ -37,3 +40,5 @@ class Form
 		// @TODO do something with data (send xhr ;) )
 	}
 }
+
+module.exports = Form;

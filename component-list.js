@@ -1,5 +1,8 @@
 "use strict";
 
+const $ = require( 'jquery' )
+	;
+
 class ComponentList
 {
 	constructor( form ) {
@@ -13,11 +16,11 @@ class ComponentList
 
 	build() {
 		let $container = $( '<div>' );
-		this.components.forEach( c => $container.append( c.build() ) );
+		this.components.forEach( c => $container.append( c.getValue() ) );
 		return $container;
 	}
 
-	validate(data) {
+	validate( data ) {
 		let valid = true;
 		this.components.forEach( c => {
 			valid = valid && c.validate( data );
@@ -29,7 +32,9 @@ class ComponentList
 		this.components.forEach( c => c.save( data ) );
 	}
 
-	forEach(cb) {
+	forEach( cb ) {
 		this.components.forEach( c => cb( c ) );
 	}
 }
+
+module.exports = ComponentList;

@@ -8,7 +8,7 @@ class Component
 
 	getValue() {
 		// @TODO return correct value based on input
-		return 'My value';
+		return 'My value has id: ' +  this.id  + '<br />';
 	}
 
 	validate() {
@@ -19,3 +19,5 @@ class Component
 		data[ this.id ] = this.getValue();
 	}
 }
+
+module.exports = Component;

@@ -1,5 +1,7 @@
 "use strict";
 
+const XMLHttpRequest = require( 'xmlhttprequest' ).XMLHttpRequest;
+
 const api = {
 	eventListeners: {}
 };

@@ -1,12 +1,16 @@
 "use strict";
 
-const FormFactory = {
+const Form = require( './form' ),
+		api = require( './api' )
+		;
 
-	load: function( id ) {
+class FormFactory
+{
+	load( id ) {
 
 		let form = new Form( id );
 
-		api.get( this.id, r => {
+		api.get( id, r => {
 
 			// @TODO add fields (using addFields method from form)
 			console.log( r );
@@ -14,4 +18,6 @@ const FormFactory = {
 
 		return form;
 	}
-};
+}
+
+module.exports = FormFactory;
