@@ -1,11 +1,11 @@
 "use strict";
 
 const Form = require( './form' ),
-		api = require( './api' )
-		;
+	api = require( './api' )
+;
 
-class FormFactory
-{
+class FormFactory {
+
 	load( id ) {
 
 		let form = new Form( id );

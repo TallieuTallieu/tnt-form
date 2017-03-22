@@ -1,7 +1,6 @@
 "use strict";
 
-const $ = require( 'jquery' )
-	;
+const $ = require( 'jquery' );
 
 class ComponentList
 {
@@ -11,12 +10,13 @@ class ComponentList
 	}
 
 	add( component ) {
+		component.setForm( this.form );
 		this.components.push( component );
 	}
 
 	build() {
 		let $container = $( '<div>' );
-		this.components.forEach( c => $container.append( c.getValue() ) );
+		this.components.forEach( c => $container.append( c.build() ) );
 		return $container;
 	}
 

@@ -1,12 +1,14 @@
 "use strict";
 
 const ComponentList = require( './component-list' ),
-		$ = require( 'jquery' )
-	;
+	$ = require( 'jquery' ),
+	Eventable = require('./eventable')
+;
 
-class Form
-{
+class Form extends Eventable {
+
 	constructor( id ) {
+		super();
 		this.id = id;
 		this.components = new ComponentList( this );
 	}
@@ -16,7 +18,9 @@ class Form
 	}
 
 	build() {
+
 		let $container = $( '<form>' );
+
 		let $saveButton = $( '<button>' )
 			.attr( 'type', 'submit' )
 			.text( 'Submit' )
@@ -25,19 +29,24 @@ class Form
 		$container.append( this.components.build() );
 		$container.append( $saveButton );
 
+		$container.on( 'submit', e => {
+			if( this.validate() ) {
+				this.save();
+			}
+			e.preventDefault();
+		} );
+
 		return $container;
 	}
 
 	validate( data ) {
-		this.components.validate( data );
+		return this.components.validate( data );
 	}
 
 	save() {
 		let data = {};
 		this.components.save( data );
-
-		console.log( data );
-		// @TODO do something with data (send xhr ;) )
+		this.trigger( 'submit', { data: data } );
 	}
 }
 
