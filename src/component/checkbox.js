@@ -12,16 +12,18 @@ class Checkbox extends Component {
 	}
 
 	setup() {
-		this.$container = $('<div>');
+		this.$container = $('<label>');
+	}
+
+	getValue() {
+		return ( this.$container.find('input').prop('checked') ) ? this.$container.find('input:checked').val() : "0";
 	}
 
 	build() {
 
-		let checkbox = $('<label />').html( this.value ).prepend( $( '<input>' )
+		this.$container.text( this.value ).prepend( $( '<input>' )
 			.attr( 'type', 'checkbox' )
-			.attr( 'value', this.value ) )
-			checkbox.appendTo( this.$container )
-		;
+			.attr( 'value', 1 ) );
 
 		return this.$container;
 	}
