@@ -11,7 +11,7 @@ const gulp = require( 'gulp' ),
 ;
 
 let customOpts = {
-	entries: ['./src'],
+	entries: ['./src/index.js'],
 	debug: true
 };
 
