@@ -7,10 +7,17 @@ const ComponentList = require( './component-list' ),
 
 class Form extends Eventable {
 
-	constructor( id ) {
+	constructor( id, opts = {} ) {
 		super();
 		this.id = id;
 		this.components = new ComponentList( this );
+
+		(
+			{
+				submitButtonText: this.submitButtonText = 'Send'
+			}
+			= opts
+		);
 	}
 
 	addField( component ) {
@@ -23,7 +30,7 @@ class Form extends Eventable {
 
 		let $saveButton = $( '<button>' )
 			.attr( 'type', 'submit' )
-			.text( 'Submit' )
+			.text( this.submitButtonText )
 		;
 
 		$container.append( this.components.build() );
@@ -40,10 +47,12 @@ class Form extends Eventable {
 	}
 
 	validate( data ) {
+
 		return this.components.validate( data );
 	}
 
 	save() {
+
 		let data = {};
 		this.components.save( data );
 		this.trigger( 'submit', { data: data } );
