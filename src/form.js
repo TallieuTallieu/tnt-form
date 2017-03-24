@@ -10,6 +10,7 @@ class Form extends Eventable {
 	constructor( id, opts = {} ) {
 		super();
 		this.id = id;
+		this.errorMessages = {};
 		this.components = new ComponentList( this );
 
 		(
@@ -46,9 +47,25 @@ class Form extends Eventable {
 		return $container;
 	}
 
+	setErrorMessages( messages ) {
+		this.errorMessages = messages;
+	}
+
 	validate( data ) {
 
-		return this.components.validate( data );
+		this.components.validate( data );
+
+		let valid = true;
+		this.components.forEach( c => {
+
+			if( c.errors.length ) {
+				valid = false;
+			}
+
+			c.postValidate();
+		} );
+
+		return valid;
 	}
 
 	save() {

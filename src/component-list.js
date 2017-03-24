@@ -21,11 +21,7 @@ class ComponentList
 	}
 
 	validate( data ) {
-		let valid = true;
-		this.components.forEach( c => {
-			valid = valid && c.validate( data );
-		} );
-		return valid;
+		this.components.forEach( c => c.validate( data ) );
 	}
 
 	save( data ) {

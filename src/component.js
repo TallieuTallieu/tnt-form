@@ -10,6 +10,7 @@ class Component extends Eventable {
 		super();
 		this.id = id;
 		this.form = null;
+		this.errors = [];
 		this.setup();
 
 		(
@@ -19,6 +20,36 @@ class Component extends Eventable {
 			}
 			= opts
 		);
+	}
+
+	postValidate() {
+
+		if( this.errors.length ) {
+			let error = ( this.form.errorMessages[this.errors[0]] ? this.form.errorMessages[this.errors[0]] : this.errors[0] );
+			this.setError(error);
+		} else {
+			this.removeError();
+		}
+	}
+
+	setError( msg ) {
+		if( ! this.$error ) {
+			this.$error = $( '<span>' )
+				.appendTo( this.getContainer() )
+			;
+		}
+
+		this.getContainer().addClass( 'has-errors' );
+		this.$error.text( msg );
+	}
+
+	removeError() {
+		this.getContainer().removeClass( 'has-errors' );
+
+		if( this.$error ) {
+			this.$error.remove();
+			delete this.$error;
+		}
 	}
 
 	setForm( form ) {
@@ -33,13 +64,11 @@ class Component extends Eventable {
 
 	validate() {
 
-		if( this.v8nRequired && !this.getValue() )
-		{
-			alert( this.id + ' is a required field*' );
-			return false;
-		}
+		this.errors = [];
 
-		return true;
+		if( this.v8nRequired && !this.getValue() ) {
+			this.errors.push( 'required' );
+		}
 	}
 
 	save( data ) {

@@ -1,19 +1,40 @@
 "use strict";
 
 const Form = require( './form' ),
+	TextField = require( './component/textfield' ),
+	Checkbox = require( './component/checkbox' ),
 	api = require( './api' )
 ;
 
+let fieldmap = {
+	'textfield': TextField,
+	'checkbox': Checkbox
+};
+
 class FormFactory {
 
-	load( id ) {
+	// load( id ) {
+	//
+	// 	let form = new Form( id );
+	//
+	// 	api.get( id, r => {
+	//
+	// 		// @TODO add fields (using addFields method from form)
+	// 		console.log( r );
+	// 	} );
+	//
+	// 	return form;
+	// }
 
-		let form = new Form( id );
+	create( structure ) {
 
-		api.get( id, r => {
+		let form = new Form( 1, {
+			submitButtonText: structure.submitButtonText
+		} );
 
-			// @TODO add fields (using addFields method from form)
-			console.log( r );
+		structure.fields.forEach( f => {
+
+			form.addField( new fieldmap[ f.type ]( 1, f.opts ) );
 		} );
 
 		return form;

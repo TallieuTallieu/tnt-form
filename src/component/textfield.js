@@ -26,19 +26,17 @@ class TextField extends Component {
 
 	validate() {
 
-		if( this.getValue().length > this.v8nMaxLength  )
-		{
-			alert( this.id + ' has a maxlenght of ' + this.v8nMaxLength );
-			return false;
+		super.validate();
+
+		if( this.v8nEmail && !util.RE_EMAIL.test( this.getValue() ) ) {
+			this.errors.push( 'invalidEmail' );
 		}
 
-		if( this.v8nEmail && !util.RE_EMAIL.test( this.getValue() ) )
-		{
-			alert( this.id + ' is not a valid email.' );
-			return false;
+		if( this.getValue().length > this.v8nMaxLength ) {
+			this.errors.push( 'maxLength' );
 		}
 
-		return super.validate();
+		this.postValidate();
 	}
 
 	build() {

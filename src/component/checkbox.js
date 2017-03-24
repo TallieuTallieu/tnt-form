@@ -11,11 +11,6 @@ class Checkbox extends Component {
 		this.inputlabel =  inputlabel;
 	}
 
-	setup() {
-
-	}
-
-
 	getValue() {
 
 		return this.$input[0].checked;
@@ -32,7 +27,6 @@ class Checkbox extends Component {
 
 		this.$label = $('<label>')
 			.text( this.inputlabel )
-			.appendTo( this.getContainer() )
 		;
 
 		return this.getContainer();

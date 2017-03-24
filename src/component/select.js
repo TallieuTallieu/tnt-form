@@ -11,9 +11,6 @@ class Select extends Component {
 		this.values = values;
 	}
 
-	setup() {
-	}
-
 	getValue() {
 
 		return parseInt( this.$select.val() );
