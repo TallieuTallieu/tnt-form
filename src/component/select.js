@@ -12,13 +12,11 @@ class Select extends Component {
 	}
 
 	setup() {
-		this.$container = $('<select>')
-			.attr('type', 'text')
-		;
 	}
 
 	getValue() {
-		return parseInt( this.$container.val() );
+
+		return parseInt( this.$select.val() );
 	}
 
 	validate() {
@@ -29,21 +27,28 @@ class Select extends Component {
 			return false;
 		}
 
-		return true;
+		return super.validate();
 	}
 
 	build() {
+
+		super.build();
+
+		this.$select = $('<select>')
+				.attr('type', 'text')
+				.appendTo( this.getContainer() )
+		;
 
 		this.values.forEach( ( v, i ) => {
 
 			let $opt = $( '<option>' )
 				.attr( 'value', i )
 				.text( v )
-				.appendTo( this.$container )
+				.appendTo( this.$select )
 			;
 		} );
 
-		return this.$container;
+		return this.getContainer();
 	}
 }
 

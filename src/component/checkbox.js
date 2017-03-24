@@ -6,26 +6,36 @@ const $ = require( 'jquery' ),
 
 class Checkbox extends Component {
 
-	constructor( id, value, opt = {} ) {
+	constructor( id, inputlabel, opt = {} ) {
 		super( id, opt );
-		this.value =  value;
+		this.inputlabel =  inputlabel;
 	}
 
 	setup() {
-		this.$container = $('<label>');
+
 	}
 
+
 	getValue() {
-		return ( this.$container.find('input').prop('checked') ) ? this.$container.find('input:checked').val() : "0";
+
+		return this.$input[0].checked;
 	}
 
 	build() {
 
-		this.$container.text( this.value ).prepend( $( '<input>' )
-			.attr( 'type', 'checkbox' )
-			.attr( 'value', 1 ) );
+		super.build();
 
-		return this.$container;
+		this.$input = $( '<input>' )
+			.attr( 'type', 'checkbox' )
+			.appendTo( this.getContainer() )
+		;
+
+		this.$label = $('<label>')
+			.text( this.inputlabel )
+			.appendTo( this.getContainer() )
+		;
+
+		return this.getContainer();
 	}
 }
 
