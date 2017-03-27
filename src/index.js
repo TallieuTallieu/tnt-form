@@ -1,22 +1,8 @@
 "use strict";
 
-const FormFactory = require( './form-factory' );
-
-let formfactory = new FormFactory();
-
-let form = formfactory.create( {
-	submitButtonText: 'Send me!',
-	fields: [
-		{
-			type: 'textfield',
-			opts: {
-				v8nRequired: true
-			}
-		},
-		{
-			type: 'checkbox'
-		}
-	]
-} );
-
-form.build().appendTo( 'body' );
+module.exports = {
+    Form: require( './form' ),
+    Checkbox: require( './component/checkbox' ),
+    Select: require( './component/select' ),
+    TextField: require( './component/textfield' )
+};

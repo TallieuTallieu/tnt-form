@@ -20,13 +20,14 @@ class Checkbox extends Component {
 
 		super.build();
 
-		this.$input = $( '<input>' )
-			.attr( 'type', 'checkbox' )
+		this.$label = $('<label>')
+			.text( this.inputlabel )
 			.appendTo( this.getContainer() )
 		;
 
-		this.$label = $('<label>')
-			.text( this.inputlabel )
+		this.$input = $( '<input>' )
+			.attr( 'type', 'checkbox' )
+			.prependTo( this.$label )
 		;
 
 		return this.getContainer();
