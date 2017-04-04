@@ -15,6 +15,7 @@ class TextField extends Component {
 				v8nMaxLength : this.v8nMaxLength = 255,
 				v8nEmail : this.v8nEmail = false,
 				multiline : this.multiline = false,
+				defaultValue : this.defaultValue = '',
 			}
 			= opts
 		);
@@ -45,14 +46,16 @@ class TextField extends Component {
 
 		if( this.multiline ) {
 
-			this.$input = $('<textarea>')
-				.attr('type', 'text')
+			this.$input = $( '<textarea>' )
+				.attr( 'type', 'text' )
+				.html( this.defaultValue )
 				.appendTo( this.getContainer() )
 			;
 		} else {
 
-			this.$input = $('<input>')
-				.attr('type', 'text')
+			this.$input = $( '<input>' )
+				.attr( 'type', 'text' )
+				.attr( 'value', this.defaultValue )
 				.appendTo( this.getContainer() )
 			;
 		}
