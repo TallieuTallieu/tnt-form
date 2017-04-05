@@ -12,7 +12,6 @@ class Checkbox extends Component {
 	}
 
 	getValue() {
-
 		return this.$input[0].checked;
 	}
 
@@ -29,6 +28,8 @@ class Checkbox extends Component {
 			.attr( 'type', 'checkbox' )
 			.prependTo( this.$label )
 		;
+
+		this.$input.change( e => this.trigger( 'change', { value: this.getValue() } ) );
 
 		return this.getContainer();
 	}

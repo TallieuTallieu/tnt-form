@@ -60,6 +60,11 @@ class TextField extends Component {
 			;
 		}
 
+		this.$input.bind( 'change keyup keydown', e => {
+
+			this.trigger( 'change', { value: this.getValue() } )
+		} );
+
 		return this.getContainer();
 	}
 }
