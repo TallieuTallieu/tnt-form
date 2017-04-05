@@ -25,6 +25,14 @@ class Form extends Eventable {
 		this.components.add( component );
 	}
 
+	removeField( id ) {
+		this.components.remove( id );
+	}
+
+	getField( id ) {
+		return this.components.get( id );
+	}
+
 	build() {
 
 		let $container = $( '<form>' );

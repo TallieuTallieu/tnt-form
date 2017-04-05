@@ -32,8 +32,8 @@ class Select extends Component {
 		super.build();
 
 		this.$select = $('<select>')
-				.attr('type', 'text')
-				.appendTo( this.getContainer() )
+			.attr('type', 'text')
+			.appendTo( this.getContainer() )
 		;
 
 		this.values.forEach( ( v, i ) => {
@@ -44,6 +44,8 @@ class Select extends Component {
 				.appendTo( this.$select )
 			;
 		} );
+
+		this.$select.change( e => this.trigger( 'change', { value: this.getValue() } ) );
 
 		return this.getContainer();
 	}
