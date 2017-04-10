@@ -38,7 +38,7 @@ class Component extends Eventable {
 		this.errors = [];
 
 		if( this.v8nRequired && !this.getValue() ) {
-			this.errors.push( 'required' );
+			this.errors.push( { value: 'required', label: 'Required field' } );
 		}
 	}
 
@@ -77,6 +77,10 @@ class Component extends Eventable {
 				.text( this.label )
 				.appendTo( this.$el )
 			;
+
+			if( this.v8nRequired ) {
+				$label.addClass( 'required' );
+			}
 		}
 
 		return this.$el;
@@ -85,7 +89,7 @@ class Component extends Eventable {
 	postValidate() {
 
 		if( this.errors.length ) {
-			let error = ( this.form.errorMessages[this.errors[0]] ? this.form.errorMessages[this.errors[0]] : this.errors[0] );
+			let error = ( this.form.errorMessages[this.errors[0].label] ? this.form.errorMessages[this.errors[0].label] : this.errors[0].label );
 			this.setError(error);
 		} else {
 			this.removeError();
@@ -93,14 +97,15 @@ class Component extends Eventable {
 	}
 
 	setError( msg ) {
-		if( ! this.$error ) {
+		if( ! this.$error && ! this.form.inlineErrorMessages ) {
+
 			this.$error = $( '<span>' )
 				.appendTo( this.getContainer() )
 			;
+			this.$error.text( msg );
 		}
 
 		this.getContainer().addClass( 'has-errors' );
-		this.$error.text( msg );
 	}
 
 	removeError() {

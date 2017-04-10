@@ -8,7 +8,11 @@ class Checkbox extends Component {
 
 	constructor( id, inputlabel, opt = {} ) {
 		super( id, opt );
-		this.inputlabel =  inputlabel;
+		this.inputlabel = "";
+
+		if( inputlabel ) {
+			this.inputlabel = inputlabel;
+		}
 	}
 
 	getValue() {
@@ -19,14 +23,17 @@ class Checkbox extends Component {
 
 		super.build();
 
-		this.$label = $('<label>')
-			.text( this.inputlabel )
+		this.$input = $( '<input>' )
+			.attr( 'type', 'checkbox' )
+			.attr( 'id',  this.inputlabel )
 			.appendTo( this.getContainer() )
 		;
 
-		this.$input = $( '<input>' )
-			.attr( 'type', 'checkbox' )
-			.prependTo( this.$label )
+		this.$label = $('<label>')
+			.text( this.inputlabel )
+			.addClass( 'checkbox' )
+			.attr( 'for' , this.inputlabel )
+			.appendTo( this.getContainer() )
 		;
 
 		this.$input.change( e => this.trigger( 'change', { value: this.getValue() } ) );

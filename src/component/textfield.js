@@ -30,14 +30,23 @@ class TextField extends Component {
 		super.validate();
 
 		if( this.v8nEmail && !util.RE_EMAIL.test( this.getValue() ) ) {
-			this.errors.push( 'invalidEmail' );
+			this.errors.push( { value: 'invalidEmail', label: 'Invalid Email' } );
 		}
 
 		if( this.getValue().length > this.v8nMaxLength ) {
-			this.errors.push( 'maxLength' );
+			this.errors.push( { value: 'maxLength', label: 'Input is to long ( max ' + this.v8nMaxLength + ' )' } );
 		}
 
 		this.postValidate();
+	}
+
+	setError( msg ) {
+		super.setError( msg );
+
+		if( this.form.inlineErrorMessages ) {
+			this.$input.val('');
+			this.$input.attr( 'placeholder', msg );
+		}
 	}
 
 	build() {

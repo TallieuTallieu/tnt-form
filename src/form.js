@@ -15,7 +15,8 @@ class Form extends Eventable {
 
 		(
 			{
-				submitButtonText: this.submitButtonText = 'Send'
+				submitButtonText: this.submitButtonText = 'Send',
+				inlineErrorMessages: this.inlineErrorMessages = false,
 			}
 			= opts
 		);

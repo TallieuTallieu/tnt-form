@@ -4,14 +4,17 @@ const $ = require('jquery'),
 
 let $value = $('<span>').appendTo('body');
 
-let form = new lib.Form( 4 );
+let form = new lib.Form( 4, { submitButtonText: 'test', inlineErrorMessages: true } );
+
+console.log( form );
 
 form.addField( new lib.TextField( 'name', {
 	label: 'Hoe is uw naam?',
-	v8nRequired: true
+	v8nRequired: true,
+	v8nMaxLength: 2,
 } ) );
 form.addField( new lib.Select( 'options', [ 'lol', 'ok' ] ) );
-form.addField( new lib.Checkbox( 'checkbox', 'Vink mij aan' ) );
+form.addField( new lib.Checkbox( 'checkbox', 'ahllo', { label: 'test' } ) );
 
 form.build().appendTo('body');
 

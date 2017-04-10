@@ -13,7 +13,7 @@ class Select extends Component {
 
 	getValue() {
 
-		return parseInt( this.$select.val() );
+		return this.$select.find( ':selected' ).data( 'value-text' );
 	}
 
 	validate() {
@@ -40,6 +40,7 @@ class Select extends Component {
 
 			let $opt = $( '<option>' )
 				.attr( 'value', i )
+				.attr( 'data-value-text', v )
 				.text( v )
 				.appendTo( this.$select )
 			;
