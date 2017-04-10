@@ -2,8 +2,8 @@
 
 const $ = require( 'jquery' );
 
-class ComponentList
-{
+class ComponentList {
+	
 	constructor( form ) {
 		this.form = form;
 		this.components = [];

@@ -1,14 +1,16 @@
 {
   "name": "tnt-form",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "main": "./src/index.js",
   "devDependencies": {
     "babel-preset-es2015": "^6.22.0",
     "babelify": "^7.3.0",
     "brfs": "^1.4.3",
+    "browser-sync": "^2.18.8",
     "browserify": "^14.1.0",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
+    "gulp-uglify": "^2.1.2",
     "gutil": "^1.6.4",
     "jquery": "^3.1.1",
     "lodash.assign": "^4.2.0",
@@ -25,8 +27,8 @@
     "validation"
   ],
   "author": "Dieter Vyncke, Rein van Oyen",
-  "repository" : {
-      "type": "git",
-      "url": "git+https://github.com/DieterVyncke/tnt-form.git"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DieterVyncke/tnt-form.git"
   }
 }

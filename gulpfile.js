@@ -7,7 +7,9 @@ const gulp = require( 'gulp' ),
 	buffer =  require( 'vinyl-buffer' ),
 	watchify = require('watchify'),
 	assign = require('lodash.assign'),
-	gutil = require('gutil')
+	gutil = require('gutil'),
+	uglify = require('gulp-uglify'),
+	pump =  require('pump')
 ;
 
 let customOpts = {
@@ -33,3 +35,16 @@ function bundle() {
 		.pipe(gulp.dest('./build/js'))
 	;
 }
+
+gulp.task( 'js', function () {
+
+	return browserify( './example/index.js' )
+		.transform( 'babelify', { presets: ['es2015'] } )
+		.bundle()
+		.pipe( source( 'bundle.js' ) )
+		.pipe(gulp.dest('./build/js'))
+		.pipe( buffer() )
+		.pipe( uglify() )
+		.pipe(gulp.dest('./build/js'))
+		;
+} );
