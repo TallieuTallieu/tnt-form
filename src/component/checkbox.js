@@ -6,10 +6,17 @@ const $ = require( 'jquery' ),
 
 class Checkbox extends Component {
 
-	constructor( id, inputlabel, opt = {} ) {
-		super( id, opt );
-		this.inputlabel = "";
+	constructor( id, inputlabel, opts = {} ) {
+		super( id, opts );
 
+		(
+			{
+				tooltip : this.tooltip = '',
+			}
+			= opts
+		);
+
+		this.inputlabel = "";
 		if( inputlabel ) {
 			this.inputlabel = inputlabel;
 		}
@@ -35,6 +42,13 @@ class Checkbox extends Component {
 			.attr( 'for' , this.inputlabel )
 			.appendTo( this.getContainer() )
 		;
+
+		if( this.tooltip ) {
+			this.$tooltip = $('<p>')
+				.text( this.tooltip )
+				.appendTo( this.getContainer() )
+			;
+		}
 
 		this.$input.change( e => this.trigger( 'change', { value: this.getValue() } ) );
 

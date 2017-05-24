@@ -1,6 +1,6 @@
 {
   "name": "tnt-form",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "main": "./distribution/index.js",
   "scripts": {
     "build": "babel src --presets babel-preset-es2015 --out-dir distribution",
@@ -19,6 +19,7 @@
     "gutil": "^1.6.4",
     "jquery": "^3.1.1",
     "lodash.assign": "^4.2.0",
+    "pump": "^1.0.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.9.0"

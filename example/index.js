@@ -12,9 +12,13 @@ form.addField( new lib.TextField( 'name', {
 	label: 'Hoe is uw naam?',
 	v8nRequired: true,
 	v8nMaxLength: 2,
+	placeholder: 'title',
 } ) );
 form.addField( new lib.Select( 'options', [ 'lol', 'ok' ] ) );
-form.addField( new lib.Checkbox( 'checkbox', 'ahllo', { label: 'test' } ) );
+form.addField( new lib.Checkbox( 'checkbox', 'hallo', {
+	label: 'test',
+	tooltip: 'dit is wat extra tekst onder de checkbox',
+} ) );
 
 form.build().appendTo('body');
 

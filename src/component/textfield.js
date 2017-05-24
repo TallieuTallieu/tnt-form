@@ -16,6 +16,7 @@ class TextField extends Component {
 				v8nEmail : this.v8nEmail = false,
 				multiline : this.multiline = false,
 				defaultValue : this.defaultValue = '',
+				placeholder : this.placeholder = '',
 			}
 			= opts
 		);
@@ -67,6 +68,10 @@ class TextField extends Component {
 				.attr( 'value', this.defaultValue )
 				.appendTo( this.getContainer() )
 			;
+		}
+
+		if( this.placeholder ) {
+			this.$input.attr( 'placeholder', this.placeholder );
 		}
 
 		this.$input.bind( 'change keyup keydown', e => {
