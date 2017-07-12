@@ -26,6 +26,10 @@ form.addField( new lib.Stack( 'stack2', [
 	} )
 ] ) );
 
+form.addField( new lib.MultiCheckbox( 'food', [ 'Vol au vent', 'Vegetarian', 'French fries', 'Insects' ], {
+	label: 'Which food do you prefer?'
+} ) );
+
 form.build().appendTo('body');
 
 form.getField( 'city' ).on( 'change', e => {
