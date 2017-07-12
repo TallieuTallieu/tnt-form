@@ -32,6 +32,15 @@ class ComponentList {
 			return this.components[ index ];
 		}
 
+		for( let i = 0; i < this.components.length; i++ ) {
+			if( this.components[i].components ) {
+				let component = this.components[i].components.get( id );
+				if( component ) {
+					return component;
+				}
+			}
+		}
+
 		return false;
 	}
 

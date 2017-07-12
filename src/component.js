@@ -48,7 +48,7 @@ class Component extends Eventable {
 
 	getContainer() {
 		if( ! this.$el ) {
-			throw new Error( 'Built the component first' );
+			throw new Error( 'Build the component first' );
 		}
 		return this.$el;
 	}
