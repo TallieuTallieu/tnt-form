@@ -24,7 +24,10 @@ form.addField( new lib.Stack( 'stack2', [
 		label: 'City',
 		v8nRequired: true
 	} )
-] ) );
+], {
+	title: 'Whatsup',
+	direction: 'vertical'
+} ) );
 
 form.addField( new lib.MultiCheckbox( 'food', [ 'Vol au vent', 'Vegetarian', 'French fries', 'Insects' ], {
 	label: 'Which food do you prefer?'
