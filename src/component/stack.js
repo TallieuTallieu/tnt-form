@@ -11,6 +11,14 @@ class Stack extends Component {
 
 		super( id, opts );
 
+		(
+			{
+				title : this.title = '',
+				direction : this.direction = 'horizontal',
+			}
+				= opts
+		);
+
 		this.components = new ComponentList( this.form );
 
 		components.forEach( c => {
@@ -20,9 +28,16 @@ class Stack extends Component {
 
 	build() {
 
-		this.$el = $( '<div class="stack">' )
+		this.$el = $( '<div>' ).addClass( 'stack' ).addClass( this.direction );
+
+		let $componentContainer = $( '<div>' )
+			.appendTo( this.$el )
 			.append( this.components.build() )
 		;
+
+		if( this.title ) {
+			$componentContainer.prepend( $( '<div>' ).addClass( 'stack-title' ).text( this.title ) );
+		}
 
 		return this.$el;
 	}
