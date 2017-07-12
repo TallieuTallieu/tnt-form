@@ -31,6 +31,7 @@ class Checkbox extends Component {
 		super.build();
 
 		this.$input = $( '<input>' )
+			.addClass( 'single-checkbox' )
 			.attr( 'type', 'checkbox' )
 			.attr( 'id',  this.inputlabel )
 			.appendTo( this.getContainer() )

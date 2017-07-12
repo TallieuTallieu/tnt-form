@@ -30,6 +30,10 @@ form.addField( new lib.MultiCheckbox( 'food', [ 'Vol au vent', 'Vegetarian', 'Fr
 	label: 'Which food do you prefer?'
 } ) );
 
+form.addField( new lib.Checkbox( 'food', 'Dit is de checkbox', {
+	label: 'Single checkbox'
+} ) );
+
 form.build().appendTo('body');
 
 form.getField( 'city' ).on( 'change', e => {

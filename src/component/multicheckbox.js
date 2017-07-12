@@ -28,13 +28,6 @@ class MultiCheckbox extends Component {
 
 		super.build();
 
-		this.$label = $('<label>')
-			.text( this.inputlabel )
-			.addClass( 'checkbox' )
-			.attr( 'for' , this.inputlabel )
-			.appendTo( this.getContainer() )
-		;
-
 		this.checkboxes.forEach( text => {
 
 			let $label = $( '<label>' )
