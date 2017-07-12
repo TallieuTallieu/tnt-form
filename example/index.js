@@ -2,26 +2,53 @@ const $ = require('jquery'),
 	lib = require('../src/index')
 ;
 
-let $value = $('<span>').appendTo('body');
+// let $value = $('<span>').appendTo('body');
 
 let form = new lib.Form( 4, { submitButtonText: 'test', inlineErrorMessages: true } );
 
-console.log( form );
-
-form.addField( new lib.TextField( 'name', {
-	label: 'Hoe is uw naam?',
-	v8nRequired: true,
-	v8nMaxLength: 2,
-	placeholder: 'title',
-} ) );
 form.addField( new lib.Select( 'options', [ 'lol', 'ok' ] ) );
-form.addField( new lib.Checkbox( 'checkbox', 'hallo', {
-	label: 'test',
-	tooltip: 'dit is wat extra tekst onder de checkbox',
-} ) );
+
+form.addField( new lib.Stack( 'stack', [
+	new lib.TextField( 'first_name', {
+		label: 'First name',
+		v8nRequired: true
+	} ),
+	new lib.TextField( 'last_name', {
+		label: 'Last name',
+		v8nRequired: true
+	} )
+] ) );
+
+form.addField( new lib.Stack( 'stack2', [
+	new lib.TextField( 'city', {
+		label: 'City',
+		v8nRequired: true
+	} )
+] ) );
 
 form.build().appendTo('body');
 
+form.getField( 'city' ).on( 'change', e => {
+
+	console.log( e.value );
+} );
+
+form.getField( 'first_name' ).on( 'change', e => {
+
+	console.log( e.value );
+} );
+
+form.getField( 'last_name' ).on( 'change', e => {
+
+	console.log( e.value );
+} );
+
+form.on( 'submit', e => {
+
+	console.log( e.data );
+} );
+
+/*
 form.getField( 'name' ).hide();
 form.getField( 'checkbox' ).hide();
 
@@ -62,3 +89,4 @@ form.on( 'submit', e => {
 
 	console.log( e.data );
 } );
+*/
