@@ -13,7 +13,7 @@ class Stack extends Component {
 
 		(
 			{
-				title : this.title = '',
+				label : this.label = '',
 				direction : this.direction = 'horizontal',
 			}
 				= opts
@@ -35,8 +35,8 @@ class Stack extends Component {
 			.append( this.components.build() )
 		;
 
-		if( this.title ) {
-			$componentContainer.prepend( $( '<div>' ).addClass( 'stack-title' ).text( this.title ) );
+		if( this.label ) {
+			$componentContainer.prepend( $( '<div>' ).addClass( 'stack-title' ).text( this.label ) );
 		}
 
 		return this.$el;

@@ -25,7 +25,7 @@ form.addField( new lib.Stack( 'stack2', [
 		v8nRequired: true
 	} )
 ], {
-	title: 'Whatsup',
+	label: 'Whatsup',
 	direction: 'vertical'
 } ) );
 
