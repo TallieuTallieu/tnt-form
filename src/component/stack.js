@@ -31,12 +31,14 @@ class Stack extends Component {
 		this.$el = $( '<div>' ).addClass( 'stack' ).addClass( this.direction );
 
 		let $componentContainer = $( '<div>' )
+			.addClass( 'stack-wrap' )
 			.appendTo( this.$el )
 			.append( this.components.build() )
 		;
 
 		if( this.label ) {
 			$componentContainer.prepend( $( '<div>' ).addClass( 'stack-title' ).text( this.label ) );
+			this.$el.addClass( 'has-title' );
 		}
 
 		return this.$el;
