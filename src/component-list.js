@@ -80,6 +80,12 @@ class ComponentList {
 			}
 		} );
 	}
+
+	forEachAll( cb ) {
+		this.components.forEach( c => {
+			cb( c );
+		} );
+	}
 }
 
 module.exports = ComponentList;

@@ -54,13 +54,35 @@ class Component extends Eventable {
 	}
 
 	hide() {
-		this.isDisabled = true;
-		this.getContainer().hide();
+		if( ! this.isDisabled ) {
+
+			this.isDisabled = true;
+			this.getContainer().hide();
+
+			if( this.components ) {
+				this.components.forEachAll( c => {
+					c.hide();
+				} );
+			}
+
+			this.trigger( 'hide' );
+		}
 	}
 
 	show() {
-		this.isDisabled = false;
-		this.getContainer().show();
+		if( this.isDisabled ) {
+
+			this.isDisabled = false;
+			this.getContainer().show();
+
+			if( this.components ) {
+				this.components.forEachAll( c => {
+					c.show();
+				} );
+			}
+
+			this.trigger( 'show' );
+		}
 	}
 
 	destroy() {

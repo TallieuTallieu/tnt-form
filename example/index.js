@@ -6,57 +6,38 @@ const $ = require('jquery'),
 
 let form = new lib.Form( 4, { submitButtonText: 'test', inlineErrorMessages: true } );
 
-form.addField( new lib.Select( 'options', [ 'lol', 'ok' ] ) );
-
-form.addField( new lib.Stack( 'stack', [
-	new lib.TextField( 'first_name', {
-		label: 'First name',
-		v8nRequired: true
-	} ),
-	new lib.TextField( 'last_name', {
-		label: 'Last name',
-		v8nRequired: true
-	} )
+form.addField( new lib.Stack( 'stack1', [
+	new lib.Checkbox( 'check1', 'Voeg 50 euro toe' ),
+	new lib.Checkbox( 'check2', 'Voeg 20 euro toe' ),
+	new lib.Checkbox( 'check3', 'Voeg 70 euro toe' )
 ] ) );
 
-form.addField( new lib.Stack( 'stack2', [
-	new lib.TextField( 'city', {
-		label: 'City',
-		v8nRequired: true
-	} )
-], {
-	label: 'Whatsup',
-	direction: 'vertical'
-} ) );
-
-form.addField( new lib.MultiCheckbox( 'food', [ 'Vol au vent', 'Vegetarian', 'French fries', 'Insects' ], {
-	label: 'Which food do you prefer?'
-} ) );
-
-form.addField( new lib.Checkbox( 'food', 'Dit is de checkbox', {
-	label: 'Single checkbox'
-} ) );
-
-form.build().appendTo('body');
-
-form.getField( 'city' ).on( 'change', e => {
-
-	console.log( e.value );
+form.getField( 'stack1' ).on( 'hide', e => {
+	console.log( 'stack 1' );
 } );
 
-form.getField( 'first_name' ).on( 'change', e => {
-
-	console.log( e.value );
+form.getField( 'check1' ).on( 'hide', e => {
+	console.log( 'check 1' );
 } );
 
-form.getField( 'last_name' ).on( 'change', e => {
+form.getField( 'check2' ).on( 'hide', e => {
+	console.log( 'check 2' );
+} );
 
-	console.log( e.value );
+form.getField( 'check3' ).on( 'hide', e => {
+	console.log( 'check 3' );
 } );
 
 form.on( 'submit', e => {
 
 	console.log( e.data );
+} );
+
+form.build().appendTo('body');
+
+$( '<button>' ).appendTo( 'body' ).click( e => {
+
+	form.getField( 'stack1' ).hide();
 } );
 
 /*
