@@ -1,7 +1,7 @@
 "use strict";
 
 const Eventable = require('./eventable'),
-	$ = require( 'jquery' )
+	dom = require('./util/dom')
 ;
 
 class Component extends Eventable {
@@ -26,10 +26,12 @@ class Component extends Eventable {
 	setup() {}
 
 	setForm( form ) {
+
 		this.form = form;
 	}
 
 	getValue() {
+
 		return null;
 	}
 
@@ -43,17 +45,20 @@ class Component extends Eventable {
 	}
 
 	save( data ) {
+
 		data[ this.id ] = this.getValue();
 	}
 
 	getContainer() {
-		if( ! this.$el ) {
+
+		if( ! this.el ) {
 			throw new Error( 'Build the component first' );
 		}
-		return this.$el;
+		return this.el;
 	}
 
 	hide() {
+
 		if( ! this.isDisabled ) {
 
 			this.isDisabled = true;
@@ -70,6 +75,7 @@ class Component extends Eventable {
 	}
 
 	show() {
+
 		if( this.isDisabled ) {
 
 			this.isDisabled = false;
@@ -86,22 +92,23 @@ class Component extends Eventable {
 	}
 
 	destroy() {
-		this.getContainer().remove();
+
+		dom.remove( this.getContainer() );
+		delete this.el;
 	}
 
 	build() {
 
-		this.$el = $( '<fieldset>' );
+		this.el = document.createElement( 'fieldset' );
 
 		if( this.label ) {
 
-			let $label = $( '<label>' )
-				.text( this.label )
-				.appendTo( this.$el )
-			;
+			let label = document.createElement( 'label' );
+			label.textContent = this.label;
+			this.el.appendChild(label);
 
 			if( this.v8nRequired ) {
-				$label.addClass( 'required' );
+				label.classList.add( 'required' );
 			}
 		}
 
@@ -111,31 +118,32 @@ class Component extends Eventable {
 	postValidate() {
 
 		if( this.errors.length ) {
-			let error = ( this.form.errorMessages[this.errors[0].label] ? this.form.errorMessages[this.errors[0].label] : this.errors[0].label );
-			this.setError(error);
+			let errorMessage = ( this.form.errorMessages[this.errors[0].label] ? this.form.errorMessages[this.errors[0].label] : this.errors[0].label );
+			this.setError(errorMessage);
 		} else {
 			this.removeError();
 		}
 	}
 
-	setError( msg ) {
-		if( ! this.$error && ! this.form.inlineErrorMessages ) {
+	setError( errorMessage ) {
 
-			this.$error = $( '<span>' )
-				.appendTo( this.getContainer() )
-			;
-			this.$error.text( msg );
+		if( ! this.error && ! this.form.inlineErrorMessages ) {
+
+			this.error = document.createElement( 'span' );
+			this.error.textContent = errorMessage;
+			this.getContainer().appendChild( this.error );
 		}
 
-		this.getContainer().addClass( 'has-errors' );
+		this.getContainer().classList.add( 'has-errors' );
 	}
 
 	removeError() {
-		this.getContainer().removeClass( 'has-errors' );
 
-		if( this.$error ) {
-			this.$error.remove();
-			delete this.$error;
+		this.getContainer().classList.remove( 'has-errors' );
+
+		if( this.error ) {
+			dom.remove(this.error);
+			delete this.error;
 		}
 	}
 }

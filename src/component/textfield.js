@@ -1,13 +1,13 @@
 "use strict";
 
-const $ = require( 'jquery' ),
-	Component = require('../component'),
+const Component = require('../component'),
 	util = require('../util/util.js')
 ;
 
 class TextField extends Component {
 
 	constructor( id, opts = {} ) {
+
 		super( id, opts );
 
 		(
@@ -23,7 +23,7 @@ class TextField extends Component {
 	}
 
 	getValue() {
-		return this.$input.val();
+		return this.input.value;
 	}
 
 	validate() {
@@ -41,12 +41,14 @@ class TextField extends Component {
 		this.postValidate();
 	}
 
-	setError( msg ) {
-		super.setError( msg );
+	setError( errorMessage ) {
+
+		super.setError( errorMessage );
 
 		if( this.form.inlineErrorMessages ) {
-			this.$input.val('');
-			this.$input.attr( 'placeholder', msg );
+
+			this.input.value = '';
+			this.input.setAttribute( 'placeholder', errorMessage );
 		}
 	}
 
@@ -56,26 +58,31 @@ class TextField extends Component {
 
 		if( this.multiline ) {
 
-			this.$input = $( '<textarea>' )
-				.attr( 'type', 'text' )
-				.html( this.defaultValue )
-				.appendTo( this.getContainer() )
-			;
+			this.input = document.createElement( 'textarea' );
+			this.input.innerHTML = this.defaultValue;
+
 		} else {
 
-			this.$input = $( '<input>' )
-				.attr( 'type', 'text' )
-				.attr( 'value', this.defaultValue )
-				.appendTo( this.getContainer() )
-			;
+			this.input = document.createElement( 'input' );
+			this.input.setAttribute( 'type', 'text' );
+			this.input.setAttribute( 'value', this.defaultValue );
 		}
+
+		this.getContainer().appendChild( this.input );
 
 		if( this.placeholder ) {
-			this.$input.attr( 'placeholder', this.placeholder );
+			this.input.setAttribute( 'placeholder', this.placeholder );
 		}
 
-		this.$input.bind( 'change keyup keydown', e => {
+		this.input.addEventListener( 'change', e => {
+			this.trigger( 'change', { value: this.getValue() } )
+		} );
 
+		this.input.addEventListener( 'keyup', e => {
+			this.trigger( 'change', { value: this.getValue() } )
+		} );
+
+		this.input.addEventListener( 'keydown', e => {
 			this.trigger( 'change', { value: this.getValue() } )
 		} );
 

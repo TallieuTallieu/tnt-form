@@ -1,7 +1,7 @@
 "use strict";
 
-const $ = require( 'jquery' ),
-	Component = require('../component')
+const Component = require('../component'),
+	dom = require('../util/dom')
 ;
 
 class MultiCheckbox extends Component {
@@ -16,9 +16,8 @@ class MultiCheckbox extends Component {
 
 		let data = {};
 
-		this.inputs.forEach( ( $input, i ) => {
-
-			data[ i ] = $input[0].checked;
+		this.inputs.forEach( ( input, index ) => {
+			data[ index ] = input.checked;
 		} );
 
 		return data;
@@ -30,19 +29,20 @@ class MultiCheckbox extends Component {
 
 		this.checkboxes.forEach( text => {
 
-			let $label = $( '<label>' )
-				.text( text )
-				.appendTo( this.getContainer() )
-			;
+			let label = document.createElement( 'label' );
+			this.getContainer().appendChild( label );
 
-			let $checkbox = $( '<input>' )
-				.attr( 'type', 'checkbox' )
-				.attr( 'id',  this.inputlabel )
-				.prependTo( $label )
-				.change( e => this.trigger( 'change', { value: this.getValue() } ) )
-			;
+			let checkbox = document.createElement( 'input' );
+			checkbox.setAttribute( 'type', 'checkbox' );
+			checkbox.setAttribute( 'id', this.inputlabel );
+			label.textContent = text;
+			dom.prepend( label, checkbox );
 
-			this.inputs.push( $checkbox );
+			checkbox.addEventListener( 'change', e => {
+				this.trigger( 'change', { value: this.getValue() } );
+			} );
+
+			this.inputs.push( checkbox );
 		} );
 
 		return this.getContainer();

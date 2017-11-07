@@ -1,15 +1,15 @@
 "use strict";
 
-const $ = require( 'jquery' );
-
 class ComponentList {
 	
 	constructor( form ) {
+
 		this.form = form;
 		this.components = [];
 	}
 
 	add( component ) {
+
 		component.setForm( this.form );
 		this.components.push( component );
 	}
@@ -26,6 +26,7 @@ class ComponentList {
 	}
 
 	get( id ) {
+
 		let index = this.getIndex( id );
 
 		if( index !== false ) {
@@ -56,24 +57,27 @@ class ComponentList {
 
 	build() {
 
-		let $container = $( '<div>' );
+		let el = document.createElement( 'div' );
 
 		this.components.forEach( c => {
-			$container.append( c.build() );
+			el.appendChild( c.build() );
 		} );
 
-		return $container;
+		return el;
 	}
 
 	validate( data ) {
+
 		this.forEach( c => c.validate( data ) );
 	}
 
 	save( data ) {
+
 		this.forEach( c => c.save( data ) );
 	}
 
 	forEach( cb ) {
+
 		this.components.forEach( c => {
 			if( ! c.isDisabled ) {
 				cb( c );
@@ -82,6 +86,7 @@ class ComponentList {
 	}
 
 	forEachAll( cb ) {
+
 		this.components.forEach( c => {
 			cb( c );
 		} );

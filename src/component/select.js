@@ -1,19 +1,18 @@
 "use strict";
 
-const $ = require( 'jquery' ),
-	Component = require('../component')
-;
+const Component = require('../component');
 
 class Select extends Component {
 
 	constructor( id, values, opts = {} ) {
+
 		super(id, opts);
 		this.values = values;
 	}
 
 	getValue() {
 
-		return this.$select.find( ':selected' ).data( 'value-text' );
+		return parseInt( this.select.value );
 	}
 
 	validate() {
@@ -31,22 +30,22 @@ class Select extends Component {
 
 		super.build();
 
-		this.$select = $('<select>')
-			.attr('type', 'text')
-			.appendTo( this.getContainer() )
-		;
+		this.select = document.createElement( 'select' );
+		this.select.setAttribute( 'type', 'text' );
 
-		this.values.forEach( ( v, i ) => {
+		this.getContainer().appendChild( this.select );
 
-			let $opt = $( '<option>' )
-				.attr( 'value', i )
-				.attr( 'data-value-text', v )
-				.text( v )
-				.appendTo( this.$select )
-			;
+		this.values.forEach( ( text, index ) => {
+
+			let option = document.createElement( 'option' );
+			option.setAttribute( 'value', index );
+			option.textContent = text;
+			this.select.appendChild( option );
 		} );
 
-		this.$select.change( e => this.trigger( 'change', { value: this.getValue() } ) );
+		this.select.addEventListener( 'change', e => {
+			this.trigger( 'change', { value: this.getValue() } )
+		} );
 
 		return this.getContainer();
 	}

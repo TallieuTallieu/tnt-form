@@ -1,7 +1,6 @@
 "use strict";
 
-const $ = require( 'jquery' ),
-	Component = require('../component'),
+const Component = require('../component'),
 	ComponentList = require('../component-list')
 ;
 
@@ -21,33 +20,37 @@ class Stack extends Component {
 
 		this.components = new ComponentList( this.form );
 
-		components.forEach( c => {
-			this.components.add( c );
-		} );
+		components.forEach( c => this.components.add( c ) );
 	}
 
 	build() {
 
-		this.$el = $( '<div>' ).addClass( 'stack' ).addClass( this.direction );
+		this.el = document.createElement( 'div' );
+		this.el.classList.add( 'stack' );
+		this.el.classList.add( this.direction );
 
-		let $componentContainer = $( '<div>' )
-			.addClass( 'stack-wrap' )
-			.appendTo( this.$el )
-			.append( this.components.build() )
-		;
+		let componentContainer = document.createElement( 'div' );
 
 		if( this.label ) {
-			$componentContainer.prepend( $( '<div>' ).addClass( 'stack-title' ).text( this.label ) );
-			this.$el.addClass( 'has-title' );
+
+			let label = document.createElement( 'div' );
+			label.classList.add( 'stack-title' );
+			label.textContent = this.label;
+			componentContainer.appendChild( $( '<div>' ).addClass( 'stack-title' ).text( this.label ) );
+
+			this.el.classList.add( 'has-title' );
 		}
 
-		return this.$el;
+		componentContainer.classList.add( 'stack-wrap' );
+		this.el.appendChild( componentContainer );
+		componentContainer.appendChild( this.components.build() );
+
+		return this.el;
 	}
 
 	save( data ) {
-		this.components.forEach( c => {
-			c.save( data );
-		} );
+
+		this.components.forEach( c => c.save( data ) );
 	}
 }
 

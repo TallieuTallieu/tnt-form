@@ -1,12 +1,11 @@
 "use strict";
 
-const $ = require( 'jquery' ),
-	Component = require('../component')
-;
+const Component = require('../component');
 
 class Checkbox extends Component {
 
 	constructor( id, inputlabel, opts = {} ) {
+
 		super( id, opts );
 
 		(
@@ -16,42 +15,42 @@ class Checkbox extends Component {
 			= opts
 		);
 
-		this.inputlabel = "";
-		if( inputlabel ) {
-			this.inputlabel = inputlabel;
-		}
+		this.inputlabel = inputlabel || '';
 	}
 
 	getValue() {
-		return this.$input[0].checked;
+
+		return this.input.checked;
 	}
 
 	build() {
 
 		super.build();
 
-		this.$input = $( '<input>' )
-			.addClass( 'single-checkbox' )
-			.attr( 'type', 'checkbox' )
-			.attr( 'id',  this.inputlabel )
-			.appendTo( this.getContainer() )
-		;
+		this.input = document.createElement( 'input' );
+		this.input.classList.add( 'single-checkbox' );
+		this.input.setAttribute( 'type', 'checkbox' );
+		this.input.setAttribute( 'id', this.id );
 
-		this.$label = $('<label>')
-			.text( this.inputlabel )
-			.addClass( 'checkbox' )
-			.attr( 'for' , this.inputlabel )
-			.appendTo( this.getContainer() )
-		;
 
-		if( this.tooltip ) {
-			this.$tooltip = $('<p>')
-				.text( this.tooltip )
-				.appendTo( this.getContainer() )
-			;
+		this.label = document.createElement( 'label' );
+		this.label.textContent = this.inputlabel;
+		this.label.classList.add( 'checkbox' );
+		this.label.setAttribute( 'for', this.id );
+
+		this.getContainer().appendChild( this.input );
+		this.getContainer().appendChild( this.label );
+
+		if( this.tooltipEl ) {
+
+			this.tooltipEl = document.createElement( 'p' );
+			this.tooltipEl.textContent = this.tooltup;
+			this.getContainer().appendChild( this.tooltipEl );
 		}
 
-		this.$input.change( e => this.trigger( 'change', { value: this.getValue() } ) );
+		this.input.addEventListener( 'change', e => {
+			this.trigger( 'change', { value: this.getValue() } );
+		} );
 
 		return this.getContainer();
 	}
