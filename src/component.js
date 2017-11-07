@@ -7,6 +7,7 @@ const Eventable = require('./eventable'),
 class Component extends Eventable {
 
 	constructor( id, opts = {} ) {
+
 		super();
 		this.id = id;
 		this.isDisabled = false;

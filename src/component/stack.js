@@ -18,12 +18,13 @@ class Stack extends Component {
 				= opts
 		);
 
-		this.components = new ComponentList( this.form );
-
-		components.forEach( c => this.components.add( c ) );
+		this.rawComponents = components;
 	}
 
 	build() {
+
+		this.components = new ComponentList( this.form );
+		this.rawComponents.forEach( c => this.components.add( c ) );
 
 		this.el = document.createElement( 'div' );
 		this.el.classList.add( 'stack' );
@@ -48,9 +49,14 @@ class Stack extends Component {
 		return this.el;
 	}
 
+	validate( data ) {
+
+		this.components.validate( data );
+	}
+
 	save( data ) {
 
-		this.components.forEach( c => c.save( data ) );
+		this.components.save( data );
 	}
 }
 
