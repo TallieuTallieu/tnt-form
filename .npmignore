@@ -1,1 +1,7 @@
+/build
 /src
+/example
+.gitignore
+.babelrc
+gulpfile.js
+index.html
