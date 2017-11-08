@@ -16,11 +16,6 @@ describe('Form', () => {
 		it('Should add a field', (done) => {
 
 			form.addField(new TextField(1));
-			done();
-		});
-
-		it('Should now have 1 component', (done) => {
-
 			form.components.components.should.have.lengthOf(1);
 			done();
 		});
