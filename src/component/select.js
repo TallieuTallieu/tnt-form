@@ -17,13 +17,15 @@ class Select extends Component {
 
 	validate() {
 
+		super.validate();
+
 		let val = this.getValue();
 
 		if( val < 0 || val > this.values.length - 1 ) {
-			return false;
+			this.errors.push( { id: 'invalidOption', default: 'Invalid option selected' } );
 		}
 
-		return super.validate();
+		this.postValidate();
 	}
 
 	build() {
