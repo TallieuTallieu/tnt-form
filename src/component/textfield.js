@@ -31,11 +31,11 @@ class TextField extends Component {
 		super.validate();
 
 		if( this.v8nEmail && !util.RE_EMAIL.test( this.getValue() ) ) {
-			this.errors.push( { value: 'invalidEmail', label: 'Invalid Email' } );
+			this.errors.push( { id: 'invalidEmail', default: 'Invalid Email' } );
 		}
 
 		if( this.getValue().length > this.v8nMaxLength ) {
-			this.errors.push( { value: 'maxLength', label: 'Input is to long ( max ' + this.v8nMaxLength + ' )' } );
+			this.errors.push( { id: 'maxLength', default: 'Input is too long ( max ' + this.v8nMaxLength + ' )' } );
 		}
 
 		this.postValidate();
