@@ -94,8 +94,11 @@ class Component extends Eventable {
 
 	destroy() {
 
-		dom.remove( this.getContainer() );
-		delete this.el;
+		if( this.el ) {
+
+			dom.remove( this.getContainer() );
+			delete this.el;
+		}
 	}
 
 	build() {

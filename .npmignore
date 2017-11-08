@@ -1,7 +1,7 @@
 /build
 /src
 /example
+/test
 .gitignore
-.babelrc
 gulpfile.js
 index.html

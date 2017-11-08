@@ -1,6 +1,5 @@
 .idea
 .DS_store
-/dry
 /build
 /node_modules
-/distribution
+/dist

@@ -1,9 +1,9 @@
 {
   "name": "tnt-form",
   "version": "0.0.30",
-  "main": "./distribution/index.js",
+  "main": "./dist/lib/index.js",
   "scripts": {
-    "build": "babel src --presets babel-preset-es2015 --out-dir distribution",
+    "build": "babel src --presets babel-preset-es2015 --out-dir dist/lib && browserify dist/lib/exports.js | uglifyjs > dist/tntform.js",
     "prepublish": "npm run build"
   },
   "devDependencies": {
@@ -13,12 +13,15 @@
     "brfs": "^1.4.3",
     "browser-sync": "^2.18.8",
     "browserify": "^14.1.0",
+    "chai": "^4.1.2",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-uglify": "^2.1.2",
     "gutil": "^1.6.4",
     "lodash.assign": "^4.2.0",
+    "mocha": "^4.0.1",
     "pump": "^1.0.2",
+    "uglify-js": "^3.1.8",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.9.0"
@@ -29,9 +32,15 @@
     "input",
     "validation"
   ],
-  "author": { "name": "Dieter Vyncke" },
+  "author": {
+    "name": "Dieter Vyncke"
+  },
   "contributors": [
-    { "name": "Rein van Oyen", "email": "reinvanoyen@gmail.com", "url": "http://www.reinvanoyen.be" }
+    {
+      "name": "Rein van Oyen",
+      "email": "reinvanoyen@gmail.com",
+      "url": "http://www.reinvanoyen.be"
+    }
   ],
   "repository": {
     "type": "git",
