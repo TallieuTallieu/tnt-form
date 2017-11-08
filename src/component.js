@@ -41,7 +41,7 @@ class Component extends Eventable {
 		this.errors = [];
 
 		if( this.v8nRequired && !this.getValue() ) {
-			this.errors.push( { value: 'required', label: 'Required field' } );
+			this.errors.push( { id: 'required', default: 'Required field' } );
 		}
 	}
 
@@ -122,7 +122,7 @@ class Component extends Eventable {
 	postValidate() {
 
 		if( this.errors.length ) {
-			let errorMessage = ( this.form.errorMessages[this.errors[0].label] ? this.form.errorMessages[this.errors[0].label] : this.errors[0].label );
+			let errorMessage = ( this.form.errorMessages[this.errors[0].id] ? this.form.errorMessages[this.errors[0].id] : this.errors[0].default );
 			this.setError(errorMessage);
 		} else {
 			this.removeError();
