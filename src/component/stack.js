@@ -37,7 +37,8 @@ class Stack extends Component {
 			let label = document.createElement( 'div' );
 			label.classList.add( 'stack-title' );
 			label.textContent = this.label;
-			componentContainer.appendChild( $( '<div>' ).addClass( 'stack-title' ).text( this.label ) );
+
+			componentContainer.appendChild( label );
 
 			this.el.classList.add( 'has-title' );
 		}
