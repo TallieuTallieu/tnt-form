@@ -43,4 +43,8 @@ form.getField( 'name' ).on( 'change', e => {
 	console.log( e.value );
 } );
 
+form.setErrorMessages( {
+	required: 'This message is required!'
+} );
+
 document.body.appendChild( form.build() );
