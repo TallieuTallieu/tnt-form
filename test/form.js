@@ -35,11 +35,6 @@ describe('Form', () => {
 		it('Should remove a field', (done) => {
 
 			form.removeField(1);
-			done();
-		});
-
-		it('Should now have 0 components', (done) => {
-
 			form.components.components.should.have.lengthOf(0);
 			done();
 		});
