@@ -27,10 +27,14 @@ class MultiCheckbox extends Component {
 
 		super.build();
 
+		let container = document.createElement( 'div' );
+		container.classList.add( 'multicheckbox' );
+		this.getContainer().appendChild(container);
+
 		this.checkboxes.forEach( text => {
 
 			let label = document.createElement( 'label' );
-			this.getContainer().appendChild( label );
+			container.appendChild( label );
 
 			let checkbox = document.createElement( 'input' );
 			checkbox.setAttribute( 'type', 'checkbox' );
