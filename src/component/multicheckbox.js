@@ -38,7 +38,6 @@ class MultiCheckbox extends Component {
 
 			let checkbox = document.createElement( 'input' );
 			checkbox.setAttribute( 'type', 'checkbox' );
-			checkbox.setAttribute( 'id', this.inputlabel );
 			label.textContent = text;
 			dom.prepend( label, checkbox );
 
