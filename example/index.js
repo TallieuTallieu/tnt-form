@@ -24,7 +24,9 @@ form.addField( new lib.Stack( 'stack', [
 	} )
 ] ) );
 
-form.addField( new lib.Select( 'accomodations', [ 'hi', 'hi 2', 'hi 3' ] ) );
+form.addField( new lib.Select( 'accomodations', [ 'hi', 'hi 2', 'hi 3' ], {
+	emptyOptionText: 'Selecteer er eentje!'
+} ) );
 
 form.addField( new lib.MultiCheckbox( 'select_some', [ 'hi', 'check this', 'whats up' ] ) );
 form.addField( new lib.Checkbox( 'select_me', 'My label' ) );

@@ -15,7 +15,7 @@ class Stack extends Component {
 				label : this.label = '',
 				direction : this.direction = 'horizontal',
 			}
-				= opts
+			= opts
 		);
 
 		this.rawComponents = components;

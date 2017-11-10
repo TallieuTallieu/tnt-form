@@ -8,11 +8,32 @@ class Select extends Component {
 
 		super(id, opts);
 		this.values = values;
+
+		(
+			{
+				emptyOptionText : this.emptyOptionText = ''
+			}
+			= opts
+		);
+
+		if( ! this.v8nRequired ) {
+			this.values.unshift( this.emptyOptionText );
+		}
 	}
 
 	getValue() {
 
-		return parseInt( this.select.value );
+		let intValue = parseInt(this.select.value);
+
+		if( ! this.v8nRequired ) {
+			if(intValue === 0) {
+				return null;
+			}
+
+			return ( intValue - 1 );
+		}
+
+		return intValue;
 	}
 
 	validate() {
