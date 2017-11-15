@@ -7,5 +7,6 @@ module.exports = {
 	MultiCheckbox: require( './component/multicheckbox' ),
 	Select: require( './component/select' ),
 	TextField: require( './component/textfield' ),
-	Stack: require( './component/stack' )
+	Stack: require( './component/stack' ),
+	File: require( './component/file' )
 };

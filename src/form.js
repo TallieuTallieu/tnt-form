@@ -39,6 +39,7 @@ class Form extends Eventable {
 	build() {
 
 		let container = document.createElement( 'form' );
+		container.setAttribute( 'enctype', 'multipart/form-data' );
 
 		let saveBtn = document.createElement( 'button' );
 		saveBtn.setAttribute( 'type', 'submit' );

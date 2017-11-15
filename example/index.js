@@ -2,6 +2,19 @@ const lib = require('../src/index');
 
 let form = new lib.Form( 4, { submitButtonText: 'test' } );
 
+form.addField( new lib.File( 'files', {
+	label: 'File',
+	tooltip: 'Sup guys, upload some files here',
+	accept: 'image/*',
+	multiple: true
+} ) );
+
+form.addField( new lib.File( 'files', {
+	label: 'Nog een bestandje',
+	tooltip: 'Single file upload!',
+	v8nRequired: true
+} ) );
+
 form.addField( new lib.TextField( 'name', {
 	label: 'Your name',
 	v8nRequired: true

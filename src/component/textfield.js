@@ -68,6 +68,10 @@ class TextField extends Component {
 			this.input.setAttribute( 'value', this.defaultValue );
 		}
 
+		if( this.v8nRequired ) {
+			this.input.required = true;
+		}
+
 		this.getContainer().appendChild( this.input );
 
 		if( this.placeholder ) {
