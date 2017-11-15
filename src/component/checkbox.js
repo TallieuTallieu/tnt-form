@@ -4,18 +4,10 @@ const Component = require('../component');
 
 class Checkbox extends Component {
 
-	constructor( id, inputlabel, opts = {} ) {
+	constructor( id, text, opts = {} ) {
 
 		super( id, opts );
-
-		(
-			{
-				tooltip : this.tooltip = '',
-			}
-			= opts
-		);
-
-		this.inputlabel = inputlabel || '';
+		this.text = text || '';
 	}
 
 	getValue() {
@@ -32,21 +24,13 @@ class Checkbox extends Component {
 		this.input.setAttribute( 'type', 'checkbox' );
 		this.input.setAttribute( 'id', this.id );
 
-
-		this.label = document.createElement( 'label' );
-		this.label.textContent = this.inputlabel;
-		this.label.classList.add( 'checkbox' );
-		this.label.setAttribute( 'for', this.id );
+		this.textEl = document.createElement( 'label' );
+		this.textEl.textContent = this.text;
+		this.textEl.classList.add( 'checkbox' );
+		this.textEl.setAttribute( 'for', this.id );
 
 		this.getContainer().appendChild( this.input );
-		this.getContainer().appendChild( this.label );
-
-		if( this.tooltipEl ) {
-
-			this.tooltipEl = document.createElement( 'p' );
-			this.tooltipEl.textContent = this.tooltup;
-			this.getContainer().appendChild( this.tooltipEl );
-		}
+		this.getContainer().appendChild( this.textEl );
 
 		this.input.addEventListener( 'change', e => {
 			this.trigger( 'change', { value: this.getValue() } );

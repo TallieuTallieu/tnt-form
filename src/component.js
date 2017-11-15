@@ -19,6 +19,7 @@ class Component extends Eventable {
 			{
 				v8nRequired : this.v8nRequired = false,
 				label : this.label = false,
+				tooltip : this.tooltip = false
 			}
 			= opts
 		);
@@ -27,12 +28,10 @@ class Component extends Eventable {
 	setup() {}
 
 	setForm( form ) {
-
 		this.form = form;
 	}
 
 	getValue() {
-
 		return null;
 	}
 
@@ -46,7 +45,6 @@ class Component extends Eventable {
 	}
 
 	save( data ) {
-
 		data[ this.id ] = this.getValue();
 	}
 
@@ -116,7 +114,15 @@ class Component extends Eventable {
 			}
 		}
 
-		return this.$el;
+		if( this.tooltip ) {
+
+			let tooltip = document.createElement( 'span' );
+			tooltip.textContent = this.tooltip;
+			this.el.appendChild(tooltip);
+			tooltip.classList.add( 'tooltip' );
+		}
+
+		return this.el;
 	}
 
 	postValidate() {

@@ -15,6 +15,7 @@ form.addField( new lib.TextField( 'message', {
 form.addField( new lib.Stack( 'stack', [
 	new lib.TextField( 'Hello', {
 		label: 'Hello',
+		tooltip: 'Hello, lets go',
 		multiline: true,
 		v8nRequired: true
 	} ),
@@ -28,11 +29,16 @@ form.addField( new lib.Select( 'accomodations', [ 'hi', 'hi 2', 'hi 3' ], {
 	emptyOptionText: 'Selecteer er eentje!'
 } ) );
 
-form.addField( new lib.MultiCheckbox( 'select_some', [ 'hi', 'check this', 'whats up' ] ) );
+form.addField( new lib.MultiCheckbox( 'select_some', [ 'hi', 'check this', 'whats up' ], {
+	tooltip: 'nice'
+} ) );
 form.addField( new lib.Checkbox( 'select_me', 'My label' ) );
 
 form.addField( new lib.Stack( 'stack1', [
-	new lib.Checkbox( 'check1', 'Voeg 50 euro toe' ),
+	new lib.Checkbox( 'check1', 'Voeg 50 euro toe', {
+		label: 'NIce!!',
+		tooltip: 'Whats uppp'
+	} ),
 	new lib.Checkbox( 'check2', 'Voeg 20 euro toe' ),
 	new lib.Checkbox( 'check3', 'Voeg 70 euro toe' )
 ] ) );
