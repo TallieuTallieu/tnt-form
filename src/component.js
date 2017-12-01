@@ -61,11 +61,11 @@ class Component extends Eventable {
 		if( ! this.isDisabled ) {
 
 			this.isDisabled = true;
-			this.getContainer().hide();
+			this.getContainer().style.display = 'none';
 
 			if( this.components ) {
 				this.components.forEachAll( c => {
-					c.hide();
+					c.style.display = 'none';
 				} );
 			}
 
@@ -78,11 +78,11 @@ class Component extends Eventable {
 		if( this.isDisabled ) {
 
 			this.isDisabled = false;
-			this.getContainer().show();
+			this.getContainer().style.display = '';
 
 			if( this.components ) {
 				this.components.forEachAll( c => {
-					c.show();
+					c.style.display = '';
 				} );
 			}
 

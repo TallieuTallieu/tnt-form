@@ -1,6 +1,6 @@
 {
   "name": "tnt-form",
-  "version": "0.0.39",
+  "version": "0.0.40",
   "main": "./dist/lib/index.js",
   "scripts": {
     "build": "babel src --presets babel-preset-es2015 --out-dir dist/lib && browserify dist/lib/exports.js | uglifyjs > dist/tntform.js",
