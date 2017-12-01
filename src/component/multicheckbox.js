@@ -31,15 +31,22 @@ class MultiCheckbox extends Component {
 		container.classList.add( 'multicheckbox' );
 		this.getContainer().appendChild(container);
 
-		this.checkboxes.forEach( text => {
+		this.checkboxes.forEach( ( text, i ) => {
 
+			let checkboxId = 'multicheckbox-' + this.id + '-' + i;
+
+			let wrap = document.createElement( 'div' );
 			let label = document.createElement( 'label' );
-			container.appendChild( label );
+			label.setAttribute( 'for', checkboxId );
+			wrap.appendChild( label );
 
 			let checkbox = document.createElement( 'input' );
+			checkbox.setAttribute( 'id', checkboxId );
 			checkbox.setAttribute( 'type', 'checkbox' );
 			label.textContent = text;
-			dom.prepend( label, checkbox );
+			dom.prepend( wrap, checkbox );
+
+			container.appendChild( wrap );
 
 			checkbox.addEventListener( 'change', e => {
 				this.trigger( 'change', { value: this.getValue() } );
