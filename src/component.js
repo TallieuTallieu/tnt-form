@@ -65,7 +65,7 @@ class Component extends Eventable {
 
 			if( this.components ) {
 				this.components.forEachAll( c => {
-					c.style.display = 'none';
+					c.hide();
 				} );
 			}
 
@@ -82,7 +82,7 @@ class Component extends Eventable {
 
 			if( this.components ) {
 				this.components.forEachAll( c => {
-					c.style.display = '';
+					c.show();
 				} );
 			}
 
