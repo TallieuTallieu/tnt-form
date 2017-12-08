@@ -62,6 +62,7 @@ class Component extends Eventable {
 
 			this.isDisabled = true;
 			this.getContainer().style.display = 'none';
+			this.getContainer().disabled = true;
 
 			if( this.components ) {
 				this.components.forEachAll( c => {
@@ -79,6 +80,7 @@ class Component extends Eventable {
 
 			this.isDisabled = false;
 			this.getContainer().style.display = '';
+			this.getContainer().disabled = false;
 
 			if( this.components ) {
 				this.components.forEachAll( c => {
