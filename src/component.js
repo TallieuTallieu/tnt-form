@@ -39,7 +39,7 @@ class Component extends Eventable {
 
 		this.errors = [];
 
-		if( this.v8nRequired && this.getValue().replace(/\s+/g, '') === '' ) {
+		if( this.v8nRequired && this.getValue().toString().replace(/\s+/g, '') === '' ) {
 			this.errors.push( { id: 'required', default: 'Required field' } );
 		}
 	}
