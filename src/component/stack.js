@@ -52,7 +52,16 @@ class Stack extends Component {
 
 	validate( data ) {
 
-		this.components.validate( data );
+    this.errors = [];
+
+    this.components.validate( data );
+
+    this.components.forEach(c => {
+    	if (c.errors.length) {
+    		this.errors.push({ id: 'stackContainsError', default: 'One or more fields in the stack has an error' });
+	    }
+    });
+
 	}
 
 	save( data ) {

@@ -68,7 +68,9 @@ class ComponentList {
 
 	validate( data ) {
 
-		this.forEach( c => c.validate( data ) );
+		this.forEach( c => {
+			c.validate( data );
+		});
 	}
 
 	save( data ) {
