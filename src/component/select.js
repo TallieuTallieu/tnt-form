@@ -11,7 +11,8 @@ class Select extends Component {
 
 		(
 			{
-				emptyOptionText : this.emptyOptionText = ''
+				emptyOptionText : this.emptyOptionText = '',
+				defaultValue: this.defaultValue = ''
 			}
 			= opts
 		);
@@ -20,9 +21,7 @@ class Select extends Component {
 
 	getValue() {
 
-		let intValue = parseInt(this.select.value);
-
-		return intValue;
+		return parseInt(this.select.value);
 
 	}
 
@@ -67,6 +66,12 @@ class Select extends Component {
 
 			let option = document.createElement( 'option' );
 			option.setAttribute( 'value', index );
+
+			if ( text === this.defaultValue )
+			{
+				option.selected = true;
+			}
+
 			option.textContent = text;
 			this.select.appendChild( option );
 
