@@ -16,24 +16,18 @@ class Select extends Component {
 			= opts
 		);
 
-		if( ! this.v8nRequired ) {
-			this.values.unshift( this.emptyOptionText );
-		}
 	}
 
 	getValue() {
 
 		let intValue = parseInt(this.select.value);
 
-		if( ! this.v8nRequired ) {
-			if(intValue === 0) {
-				return null;
-			}
-
-			return ( intValue - 1 );
+		if(intValue === 0) {
+			return null;
 		}
 
-		return intValue;
+		return ( intValue - 1 );
+
 	}
 
 	validate() {
@@ -56,7 +50,22 @@ class Select extends Component {
 		this.select = document.createElement( 'select' );
 		this.select.setAttribute( 'type', 'text' );
 
+		if ( this.v8nRequired )
+		{
+			this.select.required = true
+		}
+
 		this.getContainer().appendChild( this.select );
+
+		if ( this.emptyOptionText )
+		{
+
+			let option = document.createElement( 'option' );
+			option.setAttribute( 'value', '' );
+			option.textContent = this.emptyOptionText;
+			this.select.appendChild( option );
+
+		}
 
 		this.values.forEach( ( text, index ) => {
 
@@ -64,6 +73,7 @@ class Select extends Component {
 			option.setAttribute( 'value', index );
 			option.textContent = text;
 			this.select.appendChild( option );
+
 		} );
 
 		this.select.addEventListener( 'change', e => {
