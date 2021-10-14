@@ -22,11 +22,7 @@ class Select extends Component {
 
 		let intValue = parseInt(this.select.value);
 
-		if(intValue === 0) {
-			return null;
-		}
-
-		return ( intValue - 1 );
+		return intValue;
 
 	}
 
