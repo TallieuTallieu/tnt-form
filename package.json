@@ -1,6 +1,6 @@
 {
-  "name": "tnt-form",
-  "version": "0.0.46",
+  "name": "@tallieutallieu/tnt-form",
+  "version": "0.0.47",
   "main": "./dist/lib/index.js",
   "scripts": {
     "build": "babel src --presets babel-preset-es2015 --out-dir dist/lib && browserify dist/lib/exports.js | uglifyjs > dist/tntform.js",
@@ -44,6 +44,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DieterVyncke/tnt-form.git"
+    "url": "git://github.com/tallieutallieu/tnt-form.git"
+  },
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com"
   }
 }
